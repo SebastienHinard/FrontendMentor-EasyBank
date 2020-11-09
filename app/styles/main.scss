@@ -1,0 +1,530 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap');
+
+$darkblue: hsl(233, 26%, 24%);
+$limegreen: hsl(136, 65%, 51%);
+$brightCyan: hsl(192, 70%, 51%);
+
+$grayishBlue: hsl(233, 8%, 62%);
+$lightGrayishBlue: hsl(220, 16%, 96%);
+$veryLighGray: hsl(0, 0%, 98%);
+$white: hsl(0, 0%, 100%);
+
+*,
+:after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 18px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}
+
+.container {
+  margin: auto;
+  max-width: 450px;
+  padding: 0 15px;
+}
+
+.btn {
+  background: linear-gradient(90deg, $limegreen, $brightCyan);
+  color: $white;
+  padding: 0.5em 2em;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s ease-in-out;
+  position: relative;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: inherit;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+    transition: .3s ease-in-out;
+  }
+
+  &:hover:after,
+  &:focus:after {
+    opacity: .3;
+  }
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 100;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em;
+    height: 4em;
+    max-width: 1200px;
+  }
+
+  &__toggle {
+    width: 40px;
+    height: 30px;
+    background: url('../images/icon-hamburger.svg') no-repeat center;
+  }
+
+  &__content {
+    position: absolute;
+    top: 5em;
+    left: 1em;
+    background-color: #fff;
+    width: calc(100% - 2em);
+    border-radius: 5px;
+    padding: 1em;
+    list-style: none;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease-in-out;
+    transform: scaleY(0%);
+    transform-origin: top;
+  }
+
+  &__link {
+    width: 100%;
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5em 0;
+    color: $darkblue;
+  }
+
+  &__btn {
+    display: none;
+  }
+
+  &__background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: linear-gradient($darkblue, transparentize($color: $darkblue, $amount: 0.99) );
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease-in-out;
+  }
+}
+
+body.nav-open .nav {
+  &__content,
+  &__background {
+    opacity: 1;
+    pointer-events: unset;
+    transform: none;
+  }
+
+  &__toggle {
+    background-image: url('../images/icon-close.svg');
+  }
+}
+
+.cta {
+  &__container {
+    max-width: unset;
+    padding: unset;
+  }
+
+  &__img {
+    height: 345px;
+    background: url('../images/bg-intro-mobile.svg') bottom right no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+
+    img {
+      width: 345px;
+      margin: auto;
+      transform: translateY(-120px);
+    }
+  }
+
+  &__content {
+    padding: 0 20px;
+    text-align: center;
+    padding-bottom: 80px;
+  }
+
+  &__title {
+    font-size: 2.2em;
+    color: $darkblue;
+    font-weight: 300;
+    margin-bottom: 0.5em;
+  }
+
+  &__teaser {
+    color: $grayishBlue;
+    font-size: 0.85em;
+    line-height: 1.5;
+    margin-bottom: 2em;
+  }
+
+  &__btn {
+    margin-top: 1em;
+  }
+}
+
+.footer {
+  background: $darkblue;
+  color: $veryLighGray;
+  padding: 2em 15px;
+  text-align: center;
+
+  &-nav {
+    margin: 2em 0;
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    &__item {
+      margin: .5em 0;
+  
+      a {
+        color: $veryLighGray;
+        text-decoration: none;
+        font-size: .8em;
+        transition: 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+          color: $limegreen;
+        }
+      }
+    }
+  }
+
+  &-social {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+  
+    &__item {
+      margin: 0 .3em;
+
+      svg path {
+        fill: $veryLighGray;
+        transition: 0.3s ease-in-out;
+      }
+
+      a:hover,
+      a:focus {
+        svg path {
+          fill: $limegreen;
+        }
+      }
+    }
+  }
+
+  &__logo {
+    display: inline-flex;
+    margin: auto;
+  }
+
+  &__btn {
+    margin-bottom: 2em;
+  }
+
+  &__copy {
+    font-size: 0.8em;
+    color: $grayishBlue;
+  }
+}
+
+.section {
+  padding: 80px 0 40px;
+  background: $veryLighGray;
+  text-align: center;
+
+  &--dark {
+    background: $lightGrayishBlue;
+  }
+
+  &__title {
+    font-size: 1.9em;
+    color: $darkblue;
+    font-weight: 300;
+    margin-bottom: 0.5em;
+  }
+
+  &__teaser {
+    color: $grayishBlue;
+    font-size: 0.85em;
+    line-height: 1.5;
+    margin-bottom: 4em;
+  }
+}
+
+.reassurance {
+  list-style: none;
+  margin-top: 2em;
+
+  &__item {
+    text-align: center;
+  }
+
+  &__icon {
+    margin: 1em auto;
+  }
+
+  &__title {
+    font-size: 1.2em;
+    color: $darkblue;
+    font-weight: 300;
+    margin-bottom: 0.5em;
+  }
+
+  &__teaser {
+    color: $grayishBlue;
+    font-size: 0.85em;
+    line-height: 1.5;
+    margin-bottom: 2em;
+  }
+}
+
+.article {
+  background: $white;
+  margin: 1.5em 0;
+
+  &__img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+  }
+
+  &__content {
+    padding: 1em 1.5em;
+  }
+  
+  &__author {
+    font-size: .6em;
+    color: $grayishBlue;
+  }
+
+  &__title {
+    font-size: .95em;
+    color: $darkblue;
+    font-weight: 500;
+    margin: 1em 0;
+  }
+
+  &__teaser {
+    color: $grayishBlue;
+    font-size: 0.75em;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .nav {
+    &__toggle {
+      display: none;
+    }
+
+    &__content {
+      margin: unset;
+      width: unset;
+      padding: unset;
+      border-radius: unset;
+      opacity: 1;
+      pointer-events: unset;
+      transform: none;
+      position: static;
+      display: flex;
+    }
+
+    &__item {
+      margin: 0 0.5em;
+      font-size: .75em;
+      font-weight: 600;
+    }
+
+    &__link {
+      color: $grayishBlue;
+      position: relative;
+      transition: 0.3s ease-in-out;
+
+      &:after {
+        content: '';
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, $limegreen, $brightCyan);
+        position: absolute;
+        left: 50%;
+        bottom: -21px;
+        transform: translateX(-50%);
+        transition: 0.3s ease-in-out;
+      }
+
+      &:hover,
+      &:focus {
+        color: $darkblue;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+
+    &__btn {
+      display: inline-block;
+    }
+  }
+
+  .cta {
+    background: url('../images/bg-intro-desktop.svg') no-repeat left 40vw center;
+    // background-size: cover;
+    
+
+    &__container {
+      display: flex;
+      flex-direction: row-reverse;
+      max-width: 1200px;
+      padding: 0 15px;
+    }
+
+    &__content {
+      width: 40%;
+      padding: 80px 0;
+      text-align: left;
+    }
+
+    &__img {
+      width: 60%;
+      overflow: unset;
+      background: unset;
+
+      img {
+        width: 80%;
+        max-width: 520px;
+        margin: 0 0 0 auto;
+      }
+    }
+  }
+
+  .section {
+    text-align: left;
+
+    &__teaser {
+      max-width: 550px;
+    }
+  }
+
+  .reassurance {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+      width: 50%;
+      padding: 0 30px;
+    }
+  }
+
+  .article {
+    width: calc(50% - 0.75em);
+
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &__img {
+      height: 220px;
+      object-fit: cover;
+    }
+  }
+
+  .footer {
+    &__container {
+      display: flex;
+    }
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 25%;
+    }
+
+    &__middle {
+      width: 50%;
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 25%;
+    }
+
+    &-nav {
+      margin: 0;
+      text-align: left;
+
+      ul {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        max-height: 120px;
+      }
+
+      &__item {
+        margin: 0 5em 1em 0;
+      }
+    }
+
+    &__logo,
+    &-social {
+      margin: 0;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .reassurance {
+    &__item {
+      width: 25%;
+    }
+  }
+
+  .article {
+    width: calc(25% - 0.75em);
+  }
+}
