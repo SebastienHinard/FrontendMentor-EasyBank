@@ -1,0 +1,1 @@
+"use strict";var navToggle=document.querySelectorAll(".nav__toggle, .nav__background");navToggle.forEach(function(n){n.onclick=function(n){n.preventDefault();var e=document.body.classList;e.contains("nav-open")?e.remove("nav-open"):e.add("nav-open")}});
